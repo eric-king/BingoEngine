@@ -32,15 +32,15 @@ public class StandardBoard
 
     public static int Draw(Random random, List<int> previouslyGeneratedValues) 
     {
-        return GenerateDistinctRandomInRange(random, 1, 75, previouslyGeneratedValues);
+        return GenerateDistinctRandomInRange(random, (1, 75), previouslyGeneratedValues);
     }
 
-    private static int GenerateDistinctRandomInRange(Random random, int minValue, int maxValue, List<int> previouslyGeneratedValues)
+    private static int GenerateDistinctRandomInRange(Random random, (int minValue, int maxValue) range, List<int> previouslyGeneratedValues)
     {
         int newValue;
         do
         {
-            newValue = random.Next(minValue, maxValue + 1);
+            newValue = random.Next(range.minValue, range.maxValue + 1);
         }
         // try again if we've already got that value
         while (previouslyGeneratedValues.Any(previousValue => newValue == previousValue));
@@ -99,8 +99,7 @@ public class StandardBoard
             // designated value bucket as described above
             for (int rowIndex = 0; rowIndex < Constants.STANDARD_ROW_COUNT; rowIndex++)
             {
-                var (minCellValue, maxCellValue) = columnParam.Value;
-                int cellValue = GenerateDistinctRandomInRange(random, minCellValue, maxCellValue, previouslyGeneratedValues);
+                int cellValue = GenerateDistinctRandomInRange(random, columnParam.Value, previouslyGeneratedValues);
                 columns[colIndex, rowIndex] = cellValue.ToString();
                 previouslyGeneratedValues.Add(cellValue);
             }

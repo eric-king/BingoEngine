@@ -4,7 +4,7 @@ namespace BingoEngine.Core.Boards;
 
 public class StandardBoard
 {
-    public List<string> ColumnLabels { get; } = new List<string> { "B", "I", "N", "G", "O" };
+    public string[] ColumnLabels { get; } = new[] { "B", "I", "N", "G", "O" };
     public List<BoardRow> Grid { get; init; }
     public string BoardCode { get; init; }
 
@@ -30,7 +30,7 @@ public class StandardBoard
         BoardCode = boardCode;
     }
 
-    public static int Draw(Random random, List<int> previouslyGeneratedValues) 
+    public static int Draw(Random random, List<int> previouslyGeneratedValues)
     {
         return GenerateDistinctRandomInRange(random, (1, 75), previouslyGeneratedValues);
     }
@@ -50,10 +50,10 @@ public class StandardBoard
 
     private string BuildBoardCode(string sessionCode)
     {
-        var gridValues = Grid.SelectMany(row => row.Cells.Select(cell => int.Parse(cell.Value))).ToArray();
-        var hashids = new Hashids(sessionCode);
-        var boardId = hashids.Encode(gridValues);
-        return boardId;
+        int[] gridValues = Grid.SelectMany(row => row.Cells.Select(cell => int.Parse(cell.Value))).ToArray();
+        Hashids hashids = new(sessionCode);
+        string boardCode = hashids.Encode(gridValues);
+        return boardCode;
     }
 
     private List<BoardRow> BuildRandomGrid()
@@ -89,7 +89,7 @@ public class StandardBoard
         {
             // make sure we're working with the correct column,
             // based on the column label
-            var colIndex = ColumnLabels.IndexOf(columnParam.Key);
+            var colIndex = Array.IndexOf(ColumnLabels, columnParam.Key);
 
             // cell values can't repeat, so we need to keep track
             // of the previously generated values in this column
@@ -113,10 +113,10 @@ public class StandardBoard
         // We can use HashIds with the SessionCode and the Boardcode
         // to decode the cell values into an int[25]
         // and then loop through the array to reverse engineer the rows
-        var hashids = new Hashids(sessionCode);
-        var gridValues = hashids.Decode(boardCode);
+        Hashids hashids = new(sessionCode);
+        int[] gridValues = hashids.Decode(boardCode);
 
-        var rows = new List<BoardRow>();
+        List<BoardRow> rows = new();
         for (int rowIndex = 0; rowIndex < Constants.STANDARD_ROW_COUNT; rowIndex++)
         {
             var row = new BoardRow(new BoardCell[Constants.STANDARD_COL_COUNT]);

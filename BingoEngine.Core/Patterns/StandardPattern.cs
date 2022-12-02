@@ -16,6 +16,7 @@ public class StandardPattern : BasePattern
             ■□□□□
             ■□□□□
             """),
+
             new WinCondition("Entire I column",
             """
             □■□□□
@@ -24,6 +25,7 @@ public class StandardPattern : BasePattern
             □■□□□
             □■□□□
             """),
+
             new WinCondition("Entire N column",
             """
             □□■□□
@@ -32,6 +34,7 @@ public class StandardPattern : BasePattern
             □□■□□
             □□■□□
             """),
+
             new WinCondition("Entire G column",
             """
             □□□■□
@@ -40,6 +43,7 @@ public class StandardPattern : BasePattern
             □□□■□
             □□□■□
             """),
+
             new WinCondition("Entire O column",
             """
             □□□□■
@@ -48,6 +52,7 @@ public class StandardPattern : BasePattern
             □□□□■
             □□□□■
             """),
+
             new WinCondition("Entire first row",
             """
             ■■■■■
@@ -56,6 +61,7 @@ public class StandardPattern : BasePattern
             □□□□□
             □□□□□
             """),
+
             new WinCondition("Entire second row",
             """
             □□□□□
@@ -64,6 +70,7 @@ public class StandardPattern : BasePattern
             □□□□□
             □□□□□
             """),
+
             new WinCondition("Entire third row",
             """
             □□□□□
@@ -72,6 +79,7 @@ public class StandardPattern : BasePattern
             □□□□□
             □□□□□
             """),
+
             new WinCondition("Entire fourth row",
             """
             □□□□□
@@ -80,6 +88,7 @@ public class StandardPattern : BasePattern
             ■■■■■
             □□□□□
             """),
+
             new WinCondition("Entire fifth row",
             """
             □□□□□
@@ -88,6 +97,7 @@ public class StandardPattern : BasePattern
             □□□□□
             ■■■■■
             """),
+
             new WinCondition("Diagonal top left to bottom right",
             """
             ■□□□□
@@ -96,6 +106,7 @@ public class StandardPattern : BasePattern
             □□□■□
             □□□□■
             """),
+
             new WinCondition("Diagonal top right to bottom left",
             """
             □□□□■
@@ -103,7 +114,7 @@ public class StandardPattern : BasePattern
             □□□□□
             □■□□□
             ■□□□□
-            """),
+            """)
         };
     }
 }

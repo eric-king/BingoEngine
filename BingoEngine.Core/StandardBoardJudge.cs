@@ -17,7 +17,7 @@ public static class StandardBoardJudge
     public static WinCondition? Evaluate(string sessionCode, string boardCode, IBingoPattern pattern, int[] numbersCalled)
     {
         // reconstitute the board with all of its values based on the board code 
-        var board = new StandardBoard(sessionCode, boardCode);
+        StandardBoard board = new(sessionCode, boardCode);
 
         // boards may match more than one win condition
         // but we only need the first one
@@ -28,7 +28,7 @@ public static class StandardBoardJudge
             return condition.Cells.All(cell =>
             {
                 // get the value of the win condition cell in the board
-                var boardCellValue = board.Grid[cell.RowIndex].Cells[cell.ColIndex].Value;
+                string boardCellValue = board.Grid[cell.RowIndex].Cells[cell.ColIndex].Value;
 
                 // check to see if it was called
                 return numbersCalled.Contains(int.Parse(boardCellValue));

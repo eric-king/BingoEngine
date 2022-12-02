@@ -25,7 +25,7 @@ public class WinCondition
             for (int colIndex = 0; colIndex < Constants.STANDARD_COL_COUNT; colIndex++)
             {
                 PatternCell cellToCheck = new(colIndex, rowIndex);
-                var isPartOfWinCondition = Cells.Any(cell => cell == cellToCheck);
+                bool isPartOfWinCondition = Cells.Any(cell => cell == cellToCheck);
                 stringBuilder.Append(isPartOfWinCondition ? Constants.DARK_SQUARE : Constants.LIGHT_SQUARE);
             }
             stringBuilder.AppendLine();
